@@ -21,5 +21,8 @@ Basically in the
 We can select if we want the language in Spanish -lang es or in English by default -lang en
 By default before removing any folder the user is asked for confirmation. We can avoid these questions if we select the param -noverbose.
 
+## test folders
+In the code you will find some test folder to practise before using it with your real files.
+
 # videos
 Soon we will have some videos showing how to use it.
