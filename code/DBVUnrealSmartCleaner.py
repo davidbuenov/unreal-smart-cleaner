@@ -3,7 +3,8 @@ import os
 import shutil
 import sys
 
-#cwebp-script allow to use cwebp for many files in a directory
+#DBVUnrealSmartCleaner  was born because of the necessity of Unreal Developers who have many Unreal Engine projects in their computer that they don't want to remove from it but that have problems with the disc space. This tool will remove the generated directories that can be generated at any time but that take many gigabytes of the hard disc.
+
  #   Copyright (C) 2023  David Bueno Vallejo
 #
  #   This program is free software: you can redistribute it and/or modify
@@ -26,7 +27,7 @@ STRINGS = {
         "deleted": "Eliminado: ",
         "skipped": "Se ha omitido: ",
         "remove_folder": "eliminar esta carpeta ",
-        "usage_example": "\nEjemplo de uso: python MiPrograma.py -path c:/unrealproyect/ -protect project1 project3 -remove intermediate saved",
+        "usage_example": "\nEjemplo de uso: python DBVUnrealSmartCleaner.py -path c:/unrealproyect/ -protect project1 project3 -remove intermediate saved",
         "description": 'Reduce el tamaño de las carpetas de los proyectos de Unreal Engine.',
         "path_help": 'La carpeta de trabajo',
         "protect_help": 'Lista de carpetas a proteger',
@@ -42,7 +43,7 @@ STRINGS = {
         "deleted": "Deleted: ",
         "skipped": "Skipped: ",
         "remove_folder": "remove this folder ",
-        "usage_example": "\nUsage example: python MyProgram.py -path c:/unrealproject/ -protect project1 project3 -remove intermediate saved",
+        "usage_example": "\nUsage example: python DBVUnrealSmartCleaner.py -path c:/unrealproject/ -protect project1 project3 -remove intermediate saved",
         "description": 'Reduce the size of the folders of Unreal Engine projects.',
         "path_help": 'The working folder',
         "protect_help": 'List of folders to protect',
@@ -75,7 +76,7 @@ def eliminar_carpetas(path, protect, remove, verbose, lang):
                     print(STRINGS[lang]["deleted"] + full_path)
 
 def main():
-    parser = argparse.ArgumentParser(description="DBVSmartRemove")
+    parser = argparse.ArgumentParser(description="DBVUnrealSmartCleaner")
     parser.add_argument('-lang', type=str, default='en', help="language/idioma")
     parser.add_argument('-path', type=str, help=STRINGS["en"]["path_help"])
     parser.add_argument('-protect', nargs='+', help=STRINGS["en"]["protect_help"])
