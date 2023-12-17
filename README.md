@@ -32,4 +32,4 @@ There are two example batch (.bat) files that can be modified to call easily to 
 In the code you will find some test folder to practise before using it with your real files.
 
 # videos
-Soon we will have some videos showing how to use it.
+Soon we will have some videos showing how to use it. But don't forget to suscribe to my [Youtube channel](https://www.youtube.com/@davidbuenov)  with many [Unreal Engine tutorials and demos](https://www.youtube.com/playlist?list=PLnNbmcjjevxvP97mRrjDHxHW1g6o9ZesL) 
