@@ -18,8 +18,15 @@ Usage example: python DBVUnrealSmartCleaner.py -path c:/unrealproject/ -protect 
 Basically in the 
 -path attributes we will put the folder that is on top of the proyects in this folder we use to have all our Unreal Engine 5 projects. The will be some of them that we are using frequently and we don't want to generate all the information for them. This means that there will be some projects that we want to protect. In the example above, the projects 1 and 3 will not find there folders modified. For the rest, the intermediate and saved folder will be removed. This keeps the consistency of the project and reduces the space in this, the only thing to know is that in the future we will have to wait until the content is generated. with the -remove keyword we can add all the folders that we don't want to have in our hard disk.
 
+-remove there are different folders that are generated automatically and that coud be included in this list. Some of them are: Saved, Intermediate, Binaries, DerivedDataCache
+
+All the information about the folders in the [Unreal Engine 5 Documentation](https://docs.unrealengine.com/5.0/en-US/unreal-engine-directory-structure/)
+
 We can select if we want the language in Spanish -lang es or in English by default -lang en
 By default before removing any folder the user is asked for confirmation. We can avoid these questions if we select the param -noverbose.
+
+## batch files
+There are two example batch (.bat) files that can be modified to call easily to the main application
 
 ## test folders
 In the code you will find some test folder to practise before using it with your real files.
