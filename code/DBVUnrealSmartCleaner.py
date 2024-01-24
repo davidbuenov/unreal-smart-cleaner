@@ -35,7 +35,9 @@ STRINGS = {
         "verbose_help": 'Por defecto se confirma antes de eliminar cada carpeta, si se activa esta opcion no se realizan confirmaciones',
         "lang_help": 'Idioma del script (en o es)',
         "alert_noverbose": 'Atencion, has elegido el modo no interactivo. Todas las carpetas se eliminaran sin confirmacion. Si no esta seguro elimine el atributo -noverbose',
-        "continue": 'continuar'
+        "verbose_mode": 'Modo interactivo...',
+        "continue": 'continuar',
+        "params": 'Los parametros recibidos son los siguientes:'
     },
     "en": {
         "confirm": "Are you sure you want to {accion}? [y/n]: ",
@@ -51,31 +53,38 @@ STRINGS = {
         "verbose_help": 'Confirm before deleting each folder',
         "lang_help": 'Script language (en or es)',
         "alert_noverbose": 'Warning you have choosen noverbose. All the files will be deleted without confirmation. If you are not sure remove the -noverbose attribute',
-        "continue": 'continue'
+        "verbose_mode": 'Verbose mode...',
+        "continue": 'continue',
+        "params": 'The params received are:'
     }
 }
 
-def confirmacion(accion, lang):
+def confirm(accion, lang):
     respuesta = input(STRINGS[lang]["confirm"].format(accion=accion))
     return respuesta.lower() == 'y' or respuesta.lower() == 's'
 
-def eliminar_carpetas(path, protect, remove, verbose, lang):
+def remove_folders(path, protect, remove, verbose, lang):
     for root, dirs, files in os.walk(path):
         for name in dirs:
             if name in remove and not any(p in root for p in protect):
                 full_path = os.path.join(root, name)
                 if verbose:
                     print(STRINGS[lang]["ready_to_delete"] + full_path)
-                    if confirmacion(STRINGS[lang]["remove_folder"], lang):
+                    if confirm(STRINGS[lang]["remove_folder"], lang):
                         shutil.rmtree(full_path)
                         print(STRINGS[lang]["deleted"] + full_path)
                     else:
                         print(STRINGS[lang]["skipped"] + full_path)
                 else:
+                    print ("silent mode...")
                     shutil.rmtree(full_path)
                     print(STRINGS[lang]["deleted"] + full_path)
+                    
 
 def main():
+    verbose=True
+    print("DBVUnrealSmartCleaner")
+    print("by David Bueno Vallejo 2024")
     parser = argparse.ArgumentParser(description="DBVUnrealSmartCleaner")
     parser.add_argument('-lang', type=str, default='en', help="language/idioma")
     parser.add_argument('-path', type=str, help=STRINGS["en"]["path_help"])
@@ -83,19 +92,25 @@ def main():
     parser.add_argument('-remove', nargs='+', help=STRINGS["en"]["remove_help"])
     parser.add_argument('-noverbose', action='store_false', help=STRINGS["en"]["verbose_help"])
     
-
+   
     args = parser.parse_args()
+    print(STRINGS[args.lang]["params"])
+    for arg in vars(args):
+        print(f'{arg}: {getattr(args, arg)}')
 
     if len(sys.argv)==1 or args.path is None or args.remove is None:
         parser.print_help(sys.stderr)
         print(STRINGS[args.lang]["usage_example"])
         sys.exit(1)
-    if not args.noverbose:
+    if args.noverbose:
+        print(STRINGS[args.lang]["verbose_mode"])
+    else: 
         print(STRINGS[args.lang]["alert_noverbose"])
-        if not confirmacion(STRINGS[args.lang]["continue"],args.lang):
+        verbose=False
+        if not confirm(STRINGS[args.lang]["continue"],args.lang):
             sys.exit(1)
-    print("by David Bueno Vallejo 2023")
-    eliminar_carpetas(args.path, args.protect, args.remove, args.verbose, args.lang)
+    
+    remove_folders(args.path, args.protect, args.remove, verbose, args.lang)
 
 if __name__ == "__main__":
     main()
