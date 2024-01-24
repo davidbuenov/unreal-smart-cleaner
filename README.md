@@ -12,8 +12,12 @@ The application is a python script, so you need to have installed python. It can
   -remove REMOVE [REMOVE ...]
                         List of folders to remove
   -noverbose            Confirm before deleting each folder
+```
+## Multiple projects
 
-Usage example: python DBVUnrealSmartCleaner.py -path c:/unrealproject/ -protect project1 project3 -remove intermediate saved
+Usage example: 
+```python
+python DBVUnrealSmartCleaner.py -path c:/unrealproject/ -protect project1 project3 -lang en -remove Intermediate Saved
 ```
 Basically in the 
 -path attributes we will put the folder that is on top of the proyects in this folder we use to have all our Unreal Engine 5 projects. The will be some of them that we are using frequently and we don't want to generate all the information for them. This means that there will be some projects that we want to protect. In the example above, the projects 1 and 3 will not find there folders modified. For the rest, the intermediate and saved folder will be removed. This keeps the consistency of the project and reduces the space in this, the only thing to know is that in the future we will have to wait until the content is generated. with the -remove keyword we can add all the folders that we don't want to have in our hard disk.
@@ -24,7 +28,11 @@ All the information about the folders in the [Unreal Engine 5 Documentation](htt
 
 We can select if we want the language in Spanish -lang es or in English by default -lang en
 By default before removing any folder the user is asked for confirmation. We can avoid these questions if we select the param -noverbose.
-
+## Single project 
+If you want to delete only one project, include the full path of the project. Example:
+```python
+python DBVUnrealSmartCleaner.py -path c:/unrealproject/miproject -lang en -remove Intermediate Saved Binaries DerivedDataCache
+```
 ## batch files
 There are two example batch (.bat) files that can be modified to call easily to the main application
 
