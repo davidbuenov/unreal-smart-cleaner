@@ -88,7 +88,7 @@ def main():
     parser = argparse.ArgumentParser(description="DBVUnrealSmartCleaner")
     parser.add_argument('-lang', type=str, default='en', help="language/idioma")
     parser.add_argument('-path', type=str, help=STRINGS["en"]["path_help"])
-    parser.add_argument('-protect', nargs='+', help=STRINGS["en"]["protect_help"])
+    parser.add_argument('-protect', nargs='+', default='', help=STRINGS["en"]["protect_help"])
     parser.add_argument('-remove', nargs='+', help=STRINGS["en"]["remove_help"])
     parser.add_argument('-noverbose', action='store_false', help=STRINGS["en"]["verbose_help"])
     
@@ -96,7 +96,8 @@ def main():
     args = parser.parse_args()
     print(STRINGS[args.lang]["params"])
     for arg in vars(args):
-        print(f'{arg}: {getattr(args, arg)}')
+        if arg != "noverbose":
+            print(f'{arg}: {getattr(args, arg)}')
 
     if len(sys.argv)==1 or args.path is None or args.remove is None:
         parser.print_help(sys.stderr)
